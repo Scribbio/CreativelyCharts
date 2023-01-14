@@ -1,7 +1,8 @@
 class CreativelyBarChart {
-  constructor(title, dataFile) {
+  constructor(title, description, dataFile) {
     this.id = Math.random().toString(16).slice(2);
     this.title = title;
+    this.description = description;
     this.dataFile = dataFile;
     this.data = null;
 
@@ -22,6 +23,7 @@ class CreativelyBarChart {
 
   render = () => {
     return `<h3 class="mb-0 mx-2">${this.title}</h3>
+    <p>${this.description}</p>
     <div id="stacked-bar-${this.id}"></div>
     <div class="mt-3 text-right col-lg-11">
       <small
