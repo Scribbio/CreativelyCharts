@@ -1,11 +1,12 @@
 class CreativelyBarChart {
-  constructor(title, description, dataFile) {
+  constructor(title, description, source, responses, dataFile) {
     this.id = Math.random().toString(16).slice(2);
     this.title = title;
     this.description = description;
     this.dataFile = dataFile;
     this.data = null;
-
+    this.source = source;
+    this.responses = responses;
     // H / W of graph
     // set the dimensions and margins of the graph
     (this.margin = { top: 20, right: 30, bottom: 40, left: 110 }),
@@ -23,31 +24,32 @@ class CreativelyBarChart {
 
   render = () => {
     return `<h3 class="mb-0 mx-2">${this.title}</h3>
-    <p>${this.description}</p>
-    <div id="stacked-bar-${this.id}"></div>
-    <div class="mt-3 text-right col-lg-11">
-      <small
-        >Source:
-        <a
-          href="https://catalog.data.gov/dataset/age-adjusted-death-rates-for-the-top-10-leading-causes-of-death-united-states-2013"
-          target="blank"
-          >Frequency of visiting Stack Overflow</a
-        ></small
+      <p>${this.description}</p>
+      <small>${this.responses} responses</small>
+      <div id="stacked-bar-${this.id}"></div>
+      <div class="mt-3 text-right col-lg-11">
+        <small
+          >Source:
+          <a
+            href="https://survey.stackoverflow.co/2022/"
+            target="blank"
+            >${this.source}</a
+          ></small
+        >
+      </div>
+  
+      <button
+        id="percentage${this.id}"
+        class="btn btn-secondary my-1 col-4 col-md-3 col-lg-2"
       >
-    </div>
-
-    <button
-      id="percentage${this.id}"
-      class="btn btn-secondary my-1 col-4 col-md-3 col-lg-2"
-    >
-      Percentage
-    </button>
-    <button
-      id="responses${this.id}"
-      class="btn btn-secondary my-1 col-4 col-md-3 col-lg-2"
-    >
-      Percentage
-    </button>`;
+        Percentage
+      </button>
+      <button
+        id="responses${this.id}"
+        class="btn btn-secondary my-1 col-4 col-md-3 col-lg-2"
+      >
+        Responses
+      </button>`;
   };
 
   getData = async (dt) => {
